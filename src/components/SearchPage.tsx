@@ -112,8 +112,8 @@ const SearchPage = ({ query }) => {
             "w-full " +
             (!expand &&
               (context.columnOverride === 1 &&
-              context.cardStyle !== "row1" &&
-              !context.wideUI
+                context.cardStyle !== "row1" &&
+                !context.wideUI
                 ? " max-w-2xl "
                 : " md:w-11/12 "))
           }
@@ -130,7 +130,7 @@ const SearchPage = ({ query }) => {
                 className={
                   (expand
                     ? "md:sticky top-[4rem] flex flex-row md:flex-col gap-2 w-full md:w-52 md:flex-none  p-2 md:px-0 md:mr-4  border  bg-th-post border-th-border2   shadow-md  " +
-                      " rounded-lg "
+                    " rounded-lg "
                     : "flex flex-row justify-between select-none  ") + " "
                 }
               >
@@ -146,7 +146,7 @@ const SearchPage = ({ query }) => {
                       className={
                         "cursor-pointer " +
                         ((searchUsers && sel == "Users") ||
-                        (!searchUsers && sel == "Subreddits")
+                          (!searchUsers && sel == "Subreddits")
                           ? ` font-bold  ${expand ? " bg-th-highlight " : ""} `
                           : " opacity-50 hover:opacity-70") +
                         (expand
@@ -173,12 +173,7 @@ const SearchPage = ({ query }) => {
                         : " mr-2 ml-auto ")
                     }
                   >
-                    <Checkbox
-                      clickEvent={() => setSafeSearch((r) => !r)}
-                      toggled={safeSearch}
-                      labelText={"Safe Search"}
-                      reverse={expand}
-                    />
+
                   </div>
                 </div>
               </div>
@@ -284,15 +279,14 @@ const SearchPage = ({ query }) => {
                                 router.push(
                                   router.query?.type
                                     ? router.asPath.replace(
-                                        `type=${router.query.type}`,
-                                        `type=${searchUsers ? "user" : "sr"}`
-                                      )
+                                      `type=${router.query.type}`,
+                                      `type=${searchUsers ? "user" : "sr"}`
+                                    )
                                     : router.asPath.replace(
-                                        "search?",
-                                        `search?type=${
-                                          searchUsers ? "user" : "sr"
-                                        }&`
-                                      )
+                                      "search?",
+                                      `search?type=${searchUsers ? "user" : "sr"
+                                      }&`
+                                    )
                                 );
                               } else if (after) {
                                 loadMore();
@@ -303,9 +297,8 @@ const SearchPage = ({ query }) => {
                           </button>
                         )}
                         {expand && !after && (
-                          <div className="mt-auto ml-auto font-bold opacity-50">{`All ${
-                            searchUsers ? "users" : "subs"
-                          } found`}</div>
+                          <div className="mt-auto ml-auto font-bold opacity-50">{`All ${searchUsers ? "users" : "subs"
+                            } found`}</div>
                         )}
                       </div>
                     )}
@@ -333,12 +326,10 @@ const SearchPage = ({ query }) => {
                           " rounded-lg "
                         }
                       >
-                        <h1>{`Didn't find any ${
-                          searchUsers ? "users" : "subreddits"
-                        } for "${query.q}"`}</h1>
-                        <h1>{`Safe Search is ${
-                          safeSearch ? " on " : "off"
-                        }`}</h1>
+                        <h1>{`Didn't find any ${searchUsers ? "users" : "subreddits"
+                          } for "${query.q}"`}</h1>
+                        <h1>{`Safe Search is ${safeSearch ? " on " : "off"
+                          }`}</h1>
                       </div>
                     </div>
                   </>
