@@ -58,7 +58,7 @@ export const MainProvider = ({ children }) => {
   //card style
   const [mediaOnly, setMediaOnly] = useState<boolean>();
   const [cardStyle, setCardStyle] = useState<string>("");
-  
+
   //new settings..
 
   const [compactLinkPics, setCompactLinkPics] = useState<boolean>();
@@ -69,20 +69,20 @@ export const MainProvider = ({ children }) => {
   const [disableSideBySide, setDisableSideBySide] = useState<boolean>();
   const togglePreferSideBySide = () => {
     setPreferSideBySide((p) => {
-      if(!p) setDisableSideBySide(false); 
+      if (!p) setDisableSideBySide(false);
       return !p;
     });
   };
   const toggleDisableSideBySide = () => {
     setDisableSideBySide((p) => {
-      if(!p) setPreferSideBySide(false); 
-      return !p; 
+      if (!p) setPreferSideBySide(false);
+      return !p;
     })
   }
   const [autoCollapseComments, setAutoCollapseComments] = useState<boolean>();
   const toggleAutoCollapseComments = () => {
     setAutoCollapseComments(a => !a);
-  } 
+  }
 
   const [collapseChildrenOnly, setCollapseChildrenOnly] = useState<boolean>();
   const [defaultCollapseChildren, setDefaultCollapseChildren] =
@@ -530,7 +530,7 @@ export const MainProvider = ({ children }) => {
   };
 
   const toggleNSFW = () => {
-    setNSFW((prevNSFW) => !prevNSFW);
+    setNSFW((prevNSFW) => false);
   };
   const toggleHoverPlay = () => {
     setHoverPlay((a) => !a);
@@ -1038,12 +1038,12 @@ export const MainProvider = ({ children }) => {
       };
       const defaultSortComments = async () => {
         let saved = (await localForage.getItem(
-            "defaultSortComments"
+          "defaultSortComments"
         )) as string;
         if (typeof saved === "string") {
-            setDefaultSortComments(saved);
+          setDefaultSortComments(saved);
         } else {
-            setDefaultSortComments("top");
+          setDefaultSortComments("top");
         }
       };
       const autoPlayInterval = async () => {
@@ -1088,7 +1088,7 @@ export const MainProvider = ({ children }) => {
           setAutoHideNav(false);
         }
       };
-      const preferSideBySide = async() => {
+      const preferSideBySide = async () => {
         let saved = await localForage.getItem("preferSideBySide");
         if (saved === true) {
           setPreferSideBySide(saved);
@@ -1096,7 +1096,7 @@ export const MainProvider = ({ children }) => {
           setPreferSideBySide(false);
         }
       }
-      const disableSideBySide = async() => {
+      const disableSideBySide = async () => {
         let saved = await localForage.getItem("disableSideBySide");
         if (saved === true) {
           setDisableSideBySide(saved);
@@ -1104,7 +1104,7 @@ export const MainProvider = ({ children }) => {
           setDisableSideBySide(false);
         }
       }
-      const autoCollapseComments = async() => {
+      const autoCollapseComments = async () => {
         let saved = await localForage.getItem("autoCollapseComments");
         if (saved === false) {
           setAutoCollapseComments(saved);
@@ -1121,9 +1121,9 @@ export const MainProvider = ({ children }) => {
       loadShowUserFlairs();
       loadExpandedSubPane();
       loadAutoRead();
-      preferSideBySide(); 
-      disableSideBySide(); 
-      autoCollapseComments(); 
+      preferSideBySide();
+      disableSideBySide();
+      autoCollapseComments();
 
       //things we need loaded before posts are rendered
       let autohidenav = autoHideNav();
@@ -1278,9 +1278,9 @@ export const MainProvider = ({ children }) => {
     }
   }, [fastRefreshInterval]);
   useEffect(() => {
-      if (defaultSortComments !== undefined) {
-          localForage.setItem("defaultSortComments", defaultSortComments);
-      }
+    if (defaultSortComments !== undefined) {
+      localForage.setItem("defaultSortComments", defaultSortComments);
+    }
   }, [defaultSortComments]);
   useEffect(() => {
     if (refreshOnFocus !== undefined) {
