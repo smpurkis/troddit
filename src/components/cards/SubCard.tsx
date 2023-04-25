@@ -21,7 +21,7 @@ const SubCard = ({
   subInfo = undefined,
   currMulti = undefined,
   subArray = undefined,
-  openDescription = () => {},
+  openDescription = () => { },
   isSelf = false,
 }) => {
   const context: any = useMainContext();
@@ -50,8 +50,8 @@ const SubCard = ({
         currSubInfo?.banner_background_color?.length > 1
           ? currSubInfo.banner_background_color
           : currSubInfo?.key_color?.length > 1
-          ? currSubInfo.key_color
-          : "",
+            ? currSubInfo.key_color
+            : "",
     });
 
     if (currSubInfo?.icon_url) {
@@ -60,8 +60,8 @@ const SubCard = ({
       currSubInfo?.community_icon?.length > 1
         ? setThumbURL(currSubInfo?.community_icon?.replaceAll("amp;", ""))
         : currSubInfo?.icon_img?.length > 1
-        ? setThumbURL(currSubInfo?.icon_img)
-        : setThumbURL("");
+          ? setThumbURL(currSubInfo?.icon_img)
+          : setThumbURL("");
       // : currSubInfo?.header_img?.length > 1 &&
       //   setThumbURL(currSubInfo?.header_img);
     }
@@ -78,7 +78,7 @@ const SubCard = ({
     if (data?.data?.over18 && context.nsfw !== true) {
       setHideNSFW(true);
     } else {
-      setHideNSFW(false);
+      setHideNSFW(true);
     }
   }, [context.nsfw, data]);
 
@@ -98,8 +98,8 @@ const SubCard = ({
           (tall ? " " : " rounded-t-lg ") +
           (tall ? " h-[121px] border-b " : " h-16") +
           (hideNSFW ||
-          (subBanner?.backgroundImage?.length < 9 &&
-            subBanner?.backgroundColor?.length < 2)
+            (subBanner?.backgroundImage?.length < 9 &&
+              subBanner?.backgroundColor?.length < 2)
             ? "  bg-th-scrollbar "
             : "")
         }
@@ -188,34 +188,33 @@ const SubCard = ({
                         onClick={() => {
                           !link && data?.kind === "t2"
                             ? invalidateKey([
-                                "feed",
-                                session?.data?.user?.name === data?.data?.name
-                                  ? "SELF"
-                                  : "USER",
-                                data?.data?.name,
-                              ])
+                              "feed",
+                              session?.data?.user?.name === data?.data?.name
+                                ? "SELF"
+                                : "USER",
+                              data?.data?.name,
+                            ])
                             : invalidateKey([
-                                "feed",
-                                "SUBREDDIT",
-                                data?.data?.display_name,
-                              ]); //context.setForceRefresh((p) => p + 1);
+                              "feed",
+                              "SUBREDDIT",
+                              data?.data?.display_name,
+                            ]); //context.setForceRefresh((p) => p + 1);
                         }}
                       >
                         {data?.kind === "t2"
                           ? `u/${data?.data?.name}`
                           : data?.data?.display_name_prefixed ?? (
-                              <div className="w-16 text-transparent">
-                                {"loading.."}
-                              </div>
-                            )}
+                            <div className="w-16 text-transparent">
+                              {"loading.."}
+                            </div>
+                          )}
                       </h1>
                     </a>
                   </Link>
                   {!link && (data?.data?.url || data?.data?.subreddit?.url) && (
                     <a
-                      href={`https://www.reddit.com${
-                        data?.data?.url ?? data?.data?.subreddit?.url
-                      }`}
+                      href={`https://www.reddit.com${data?.data?.url ?? data?.data?.subreddit?.url
+                        }`}
                       target={"_blank"}
                       rel="noreferrer"
                       className="mb-3 ml-2 rounded hover:bg-th-postHover"
@@ -223,13 +222,13 @@ const SubCard = ({
                       <BsBoxArrowInUpRight className="w-3 h-3 -ml-1 hover:scale-110 " />
                     </a>
                   )}
-                 
+
                   <h1 className="text-xs font-semibold pb-0.5">
                     {data?.kind === "t2" &&
-                    (data?.data?.comment_karma || data?.data?.link_karma) ? (
+                      (data?.data?.comment_karma || data?.data?.link_karma) ? (
                       `${numToString(
                         parseInt(data?.data?.comment_karma) +
-                          parseInt(data?.data?.link_karma),
+                        parseInt(data?.data?.link_karma),
                         1000
                       )} karma`
                     ) : data?.data?.subscribers ? (
