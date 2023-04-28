@@ -11,7 +11,7 @@ const SubIcon = ({ subname = "", subInfo = {}, isUser = false, size = 6 }) => {
     if (subData?.over_18 && context.nsfw !== true) {
       setHideNSFW(true);
     } else {
-      setHideNSFW(false);
+      setHideNSFW(true);
     }
   }, [context.nsfw, subInfo]);
 

@@ -27,7 +27,7 @@ const Post = ({
     );
   };
   const context: any = useMainContext();
-  const [hideNSFW, setHideNSFW] = useState(false);
+  const [hideNSFW, setHideNSFW] = useState(true);
   const [select, setSelect] = useState(false);
   const [forceMute, setforceMute] = useState(0);
   const router = useRouter();
@@ -38,10 +38,10 @@ const Post = ({
   useEffect(() => {
     context.nsfw === false && post?.data?.over_18
       ? setHideNSFW(true)
-      : setHideNSFW(false);
+      : setHideNSFW(true);
     post?.data.spoiler && setHideNSFW(true);
     return () => {
-      setHideNSFW(false);
+      setHideNSFW(true);
     };
   }, [context, post]);
 

@@ -206,15 +206,15 @@ const Thread = ({
       executeScroll();
   }, [commentsRef, commentsDirect, postComments]);
 
-  const [hideNSFW, setHideNSFW] = useState(false);
+  const [hideNSFW, setHideNSFW] = useState(true);
   useEffect(() => {
     context.nsfw === false && post?.over_18
       ? setHideNSFW(true)
       : post?.spoiler
       ? setHideNSFW(true)
-      : setHideNSFW(false);
+      : setHideNSFW(true);
     return () => {
-      setHideNSFW(false);
+      setHideNSFW(true);
     };
   }, [post, context?.nsfw]);
 

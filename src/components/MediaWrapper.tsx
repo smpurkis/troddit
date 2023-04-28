@@ -11,12 +11,12 @@ import { useMainContext } from "../MainContext";
 const MediaWrapper = ({
   hideNSFW,
   post,
-  curPostName=undefined,
+  curPostName = undefined,
   forceMute,
   imgFull,
   postMode,
-  handleClick = () => {},
-  fullMediaMode=false,
+  handleClick = () => { },
+  fullMediaMode = false,
   showCrossPost = true,
   showCrossPostMedia = true,
   containerDims = undefined as any,
@@ -36,10 +36,10 @@ const MediaWrapper = ({
     post?.over_18 && post?.spoiler
       ? setHideText("NSFW SPOILER")
       : post?.over_18
-      ? setHideText("NSFW")
-      : post?.spoiler
-      ? setHideText("SPOILER")
-      : setHideText("");
+        ? setHideText("NSFW")
+        : post?.spoiler
+          ? setHideText("SPOILER")
+          : setHideText("");
     return () => {
       //
     };
@@ -58,19 +58,19 @@ const MediaWrapper = ({
 
   const toggleHide = (e) => {
     if (hidden) {
-      e.preventDefault();
-      e.stopPropagation();
-      setHidden(false);
+      // e.preventDefault();
+      // e.stopPropagation();
+      // setHidden(false);
     }
   };
 
   const NSFWWrapper = (
     <div
-      className={hideNSFW && hidden ? "relative overflow-hidden " : " "}
+      className={hideNSFW && hidden ? "relative overflow-hidden " : "relative overflow-hidden "}
       onClick={toggleHide}
     >
       <div
-        className={"relative  " + (hideNSFW && hidden ? " blur-3xl" : "")}
+        className={"relative  " + (hideNSFW && hidden ? " blur-3xl" : " blur-3xl")}
       >
         <Media
           post={postData}
