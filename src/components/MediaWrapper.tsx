@@ -14,7 +14,7 @@ const MediaWrapper = ({
   forceMute,
   imgFull,
   postMode,
-  handleClick = () => {},
+  handleClick = () => { },
   fullMediaMode = false,
   showCrossPost = true,
   showCrossPostMedia = true,
@@ -22,7 +22,7 @@ const MediaWrapper = ({
   read = false,
   card = false,
   fill = false,
-  checkCardHeight = (h?: number) => {},
+  checkCardHeight = (h?: number) => { },
   hide = false,
   fullRes = false,
   uniformMediaMode = false,
@@ -31,6 +31,8 @@ const MediaWrapper = ({
   cardStyle = "",
   mediaOnly = false,
 }) => {
+  console.log("hideNSFW", hideNSFW);
+
   const [hideText, setHideText] = useState("");
   const [postData, setPostData] = useState<any>();
   const [isXPost, setIsXPost] = useState(false);
@@ -38,10 +40,10 @@ const MediaWrapper = ({
     post?.over_18 && post?.spoiler
       ? setHideText("NSFW SPOILER")
       : post?.over_18
-      ? setHideText("NSFW")
-      : post?.spoiler
-      ? setHideText("SPOILER")
-      : setHideText("");
+        ? setHideText("NSFW")
+        : post?.spoiler
+          ? setHideText("SPOILER")
+          : setHideText("");
     return () => {
       //
     };
@@ -66,6 +68,34 @@ const MediaWrapper = ({
     }
   };
 
+  const showMedia = (hideNSFW) => {
+    if (!hideNSFW) {
+      return (<Media
+        post={postData}
+        forceMute={forceMute}
+        imgFull={imgFull}
+        postMode={postMode}
+        containerDims={containerDims}
+        columns={columns}
+        mediaDimensions={mediaDimensions}
+        read={read}
+        card={card}
+        fill={fill}
+        handleClick={handleClick}
+        fullMediaMode={fullMediaMode}
+        hide={hide}
+        fullRes={fullRes}
+        uniformMediaMode={uniformMediaMode}
+        curPostName={curPostName}
+        xPostMode={isXPost && showCrossPost}
+        inView={inView}
+        checkCardHeight={checkCardHeight}
+      />)
+    } else {
+      return (<div></div>)
+    }
+  }
+
   const NSFWWrapper = (
     <div
       className={hideNSFW && hideText ? "relative overflow-hidden " : " "}
@@ -76,33 +106,13 @@ const MediaWrapper = ({
         style={
           mediaDimensions?.[1] > 0
             ? {
-                height: `${mediaDimensions[1]}px`,
-                backgroundColor: "transparent",
-              }
+              height: `${mediaDimensions[1]}px`,
+              backgroundColor: "transparent",
+            }
             : {}
         }
       >
-        <Media
-          post={postData}
-          forceMute={forceMute}
-          imgFull={imgFull}
-          postMode={postMode}
-          containerDims={containerDims}
-          columns={columns}
-          mediaDimensions={mediaDimensions}
-          read={read}
-          card={card}
-          fill={fill}
-          handleClick={handleClick}
-          fullMediaMode={fullMediaMode}
-          hide={hide}
-          fullRes={fullRes}
-          uniformMediaMode={uniformMediaMode}
-          curPostName={curPostName}
-          xPostMode={isXPost && showCrossPost}
-          inView={inView}
-          checkCardHeight={checkCardHeight}
-        />
+        {showMedia(hideNSFW)}
       </div>
       {hideNSFW && hideText && (
         <div className="absolute flex flex-col items-center justify-center w-full opacity-50 translate-x-[-1px] group -translate-y-11 top-1/2 text-white hover:cursor-pointer">

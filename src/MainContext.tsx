@@ -549,12 +549,12 @@ export const MainProvider = ({ children }) => {
       const loadNSFW = async () => {
         let saved_nsfw = await localForage.getItem("nsfw");
         if (saved_nsfw !== null) {
-          saved_nsfw === true ? setNSFW(true) : setNSFW(false);
+          saved_nsfw === true ? setNSFW(false) : setNSFW(false);
           localStorage.removeItem("nsfw");
         } else {
           fallback = true;
           let local_nsfw = localStorage.getItem("nsfw");
-          local_nsfw?.includes("true") ? setNSFW(true) : setNSFW(false);
+          local_nsfw?.includes("true") ? setNSFW(false) : setNSFW(false);
         }
       };
 

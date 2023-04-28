@@ -19,7 +19,7 @@ import Checkbox from "./ui/Checkbox";
 import ItemsList from "./search/ItemsList";
 
 
-const Search = ({ id, setShowSearch = (a) => {} }) => {
+const Search = ({ id, setShowSearch = (a) => { } }) => {
   const router = useRouter();
   const [error, seterror] = useState(false);
   const [value, setValue] = useState("");
@@ -53,8 +53,8 @@ const Search = ({ id, setShowSearch = (a) => {} }) => {
     if (router?.query?.q) {
       setPlaceHolder(
         "searching " +
-          `"${router?.query?.q?.toString()}"` +
-          (sub !== "" ? ` in r/${sub}` : "")
+        `"${router?.query?.q?.toString()}"` +
+        (sub !== "" ? ` in r/${sub}` : "")
       );
     }
     return () => {
@@ -122,7 +122,7 @@ const Search = ({ id, setShowSearch = (a) => {} }) => {
   const searchFields = [
     "author, flair, nsfw, self, selftext, site, subreddit, title, url",
   ];
-  const extractFields = (query) => {};
+  const extractFields = (query) => { };
   const getSuggestions = async (value) => {
     //console.log(value);
     let search = {
@@ -149,7 +149,7 @@ const Search = ({ id, setShowSearch = (a) => {} }) => {
     setLoading(true);
     let res: any = await searchSubreddits(
       value.value,
-      context.nsfw,
+      false,
       !!session,
       context?.token
     );
@@ -238,7 +238,7 @@ const Search = ({ id, setShowSearch = (a) => {} }) => {
               <div className="flex flex-row items-center px-2 py-2 overflow-hidden cursor-pointer select-none hover:bg-th-highlight ">
                 <div className="ml-2">
                   {suggestion?.data?.icon_image ??
-                  suggestion?.data?.icon_img ? (
+                    suggestion?.data?.icon_img ? (
                     <div className="relative w-6 h-6 rounded-full">
                       <Image
                         src={
@@ -283,7 +283,7 @@ const Search = ({ id, setShowSearch = (a) => {} }) => {
               <AiOutlineSearch className="w-6 h-6" />
               <h1 className="ml-4">{`Search for "${suggestion?.data?.q}"`}</h1>
               {currSub !== "" && (
-                <Checkbox toggled={srRestrict} clickEvent={() => setSrRestrict(r => !r)} labelText={`Limit to r/${currSub}`}/>
+                <Checkbox toggled={srRestrict} clickEvent={() => setSrRestrict(r => !r)} labelText={`Limit to r/${currSub}`} />
               )}
             </div>
           </a>
@@ -306,21 +306,21 @@ const Search = ({ id, setShowSearch = (a) => {} }) => {
             >
               <div className="ml-2">
                 {suggestion?.data?.icon_image?.length > 1 ||
-                suggestion?.data?.icon_img?.length > 1 ||
-                suggestion?.data?.community_icon?.length > 1 ? (
+                  suggestion?.data?.icon_img?.length > 1 ||
+                  suggestion?.data?.community_icon?.length > 1 ? (
                   <div className="relative w-6 h-6 rounded-full">
                     <Image
                       src={
                         suggestion?.data?.community_icon?.length > 1
                           ? suggestion?.data?.community_icon.replaceAll(
-                              "amp;",
-                              ""
-                            )
+                            "amp;",
+                            ""
+                          )
                           : suggestion?.data?.icon_img?.length > 1
-                          ? suggestion?.data?.icon_img.replaceAll("amp;", "")
-                          : suggestion?.data?.icon_image?.length > 1
-                          ? suggestion?.data?.icon_image.replaceAll("amp;", "")
-                          : "https://styles.redditmedia.com/t5_38jf0/styles/communityIcon_9o27r8mvttb51.png?width=256&s=58e6c9e7f7b36126893dbecb474d234de0ab7f5c"
+                            ? suggestion?.data?.icon_img.replaceAll("amp;", "")
+                            : suggestion?.data?.icon_image?.length > 1
+                              ? suggestion?.data?.icon_image.replaceAll("amp;", "")
+                              : "https://styles.redditmedia.com/t5_38jf0/styles/communityIcon_9o27r8mvttb51.png?width=256&s=58e6c9e7f7b36126893dbecb474d234de0ab7f5c"
                       }
                       alt="r"
                       layout="fill"
@@ -342,7 +342,7 @@ const Search = ({ id, setShowSearch = (a) => {} }) => {
                 <div className="text-xs text-th-textLight opacity-70">
                   {suggestion?.data?.subscribers
                     ? suggestion.data.subscribers.toLocaleString("en-US") +
-                      " followers "
+                    " followers "
                     : "?? followers "}
                   {suggestion?.data?.over18 && (
                     <span className="pl-2 text-xs font-semibold text-th-red ">
@@ -361,20 +361,20 @@ const Search = ({ id, setShowSearch = (a) => {} }) => {
                     {addMode == "subs"
                       ? "Multi Browse"
                       : selected.find(
-                          (s) =>
-                            s?.toUpperCase() ===
-                            suggestion?.data?.display_name?.toUpperCase()
-                        )
-                      ? "Remove Selected"
-                      : "Add to Selected"}
+                        (s) =>
+                          s?.toUpperCase() ===
+                          suggestion?.data?.display_name?.toUpperCase()
+                      )
+                        ? "Remove Selected"
+                        : "Add to Selected"}
                   </span>
                   <div className="flex items-center justify-center flex-none border rounded-md w-7 h-7 group-hover:border-0 hover:ring-2 ring-th-accent hover:bg-th-highlight border-th-border ">
                     {addMode == "feeds" &&
-                    selected.find(
-                      (s) =>
-                        s?.toUpperCase() ===
-                        suggestion?.data?.display_name?.toUpperCase()
-                    ) ? (
+                      selected.find(
+                        (s) =>
+                          s?.toUpperCase() ===
+                          suggestion?.data?.display_name?.toUpperCase()
+                      ) ? (
                       <AiOutlineMinus />
                     ) : (
                       <AiOutlinePlus className="" />
@@ -488,8 +488,8 @@ const Search = ({ id, setShowSearch = (a) => {} }) => {
     placeholder: placeHolder,
     value: value,
     onChange: onChange,
-    onFocus: () => {context.setReplyFocus(true); if(router?.query?.q){setValue(router?.query?.q?.toString()); }},
-    onBlur: () => {context.setReplyFocus(false); setShowSearch(false)},
+    onFocus: () => { context.setReplyFocus(true); if (router?.query?.q) { setValue(router?.query?.q?.toString()); } },
+    onBlur: () => { context.setReplyFocus(false); setShowSearch(false) },
     type: 'search',
     autoFocus: true,
   };
@@ -503,13 +503,13 @@ const Search = ({ id, setShowSearch = (a) => {} }) => {
         onSuggestionsClearRequested={onSuggestionsClearRequested}
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
-        renderSuggestionsContainer={({ containerProps: {role, ...otherContainerProps}, children }) => (
+        renderSuggestionsContainer={({ containerProps: { role, ...otherContainerProps }, children }) => (
           <div {...otherContainerProps}>
-          {React.Children.map(children, child => (
-              <ItemsList {...child.props}/>
-          ))}
+            {React.Children.map(children, child => (
+              <ItemsList {...child.props} />
+            ))}
           </div>
-      )}
+        )}
         inputProps={inputProps}
         highlightFirstSuggestion={true}
         onSuggestionSelected={onSuggestionSelected}

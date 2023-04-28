@@ -42,7 +42,7 @@ const Card1 = ({
   uniformMediaMode = false,
   mediaDimensions = [0, 0] as [number, number],
   inView = true,
-  checkCardHeight = () => {},
+  checkCardHeight = () => { },
   newPost = false,
 }) => {
   const context: any = useMainContext();
@@ -180,9 +180,8 @@ const Card1 = ({
               ? ""
               : " rounded-lg ") +
             (context.mediaOnly && hasMedia
-              ? ` ring-transparent overflow-hidden ${
-                  hovered ? "bg-th-post " : " "
-                }  `
+              ? ` ring-transparent overflow-hidden ${hovered ? "bg-th-post " : " "
+              }  `
               : " hover:ring-th-borderHighlight2 ring-th-border2  hover:shadow-2xl  shadow-md bg-th-post hover:bg-th-postHover ") +
             (context.mediaOnly && hasMedia && hovered
               ? "  ring-b-transparent rounded-b-none ring-th-border2   "
@@ -290,7 +289,7 @@ const Card1 = ({
                     </>
                   )}
                 </div>
-                {!(columns > 1 && windowWidth/columns < 200) && (
+                {!(columns > 1 && windowWidth / columns < 200) && !hideNSFW && (
                   <div
                     className={
                       "flex flex-row flex-none  mt-1 mb-auto ml-auto hover:underline " +
@@ -485,8 +484,8 @@ const Card1 = ({
                               (post?.likes === true || post?.likes === 1
                                 ? " text-th-upvote "
                                 : post?.likes === false || post?.likes === -1
-                                ? " text-th-downvote "
-                                : "")
+                                  ? " text-th-downvote "
+                                  : "")
                             }
                           >
                             <span>{voteScore}</span>
@@ -524,8 +523,8 @@ const Card1 = ({
                               (post?.likes === true || post?.likes === 1
                                 ? " text-th-upvote "
                                 : post?.likes === false || post?.likes === -1
-                                ? " text-th-downvote "
-                                : "")
+                                  ? " text-th-downvote "
+                                  : "")
                             }
                           >
                             <span>{voteScore}</span>
@@ -616,14 +615,12 @@ const Card1 = ({
                       " text-th-textLight group-hover:text-th-text   "
                     }
                   >
-                    {`${numToString(post.num_comments, 1000)} ${
-                      post.num_comments === 1 ? "comment" : "comments"
-                    }`}{" "}
+                    {`${numToString(post.num_comments, 1000)} ${post.num_comments === 1 ? "comment" : "comments"
+                      }`}{" "}
                     {typeof origCommentCount === "number" &&
                       post?.num_comments > origCommentCount && (
-                        <span className="text-xs italic font-medium">{`(${
-                          post?.num_comments - origCommentCount
-                        } new)`}</span>
+                        <span className="text-xs italic font-medium">{`(${post?.num_comments - origCommentCount
+                          } new)`}</span>
                       )}
                   </span>
                 </a>
@@ -664,10 +661,10 @@ const Card1 = ({
                   </a>
                   {(post?.link_flair_text?.length > 0 ||
                     post?.link_flair_richtext?.length > 0) && (
-                    <span className="text-xs font-medium">
-                      <TitleFlair post={post} />
-                    </span>
-                  )}
+                      <span className="text-xs font-medium">
+                        <TitleFlair post={post} />
+                      </span>
+                    )}
                 </span>
 
                 <div className="flex flex-row items-start py-1 pb-1 text-xs truncate text-th-textLight">
@@ -790,14 +787,12 @@ const Card1 = ({
                           " text-th-textLight group-hover:text-th-text   "
                         }
                       >
-                        {`${numToString(post.num_comments, 1000)} ${
-                          post.num_comments === 1 ? "comment" : "comments"
-                        }`}{" "}
+                        {`${numToString(post.num_comments, 1000)} ${post.num_comments === 1 ? "comment" : "comments"
+                          }`}{" "}
                         {typeof origCommentCount === "number" &&
                           post?.num_comments > origCommentCount && (
-                            <span className="text-xs italic font-medium">{`(${
-                              post?.num_comments - origCommentCount
-                            } new)`}</span>
+                            <span className="text-xs italic font-medium">{`(${post?.num_comments - origCommentCount
+                              } new)`}</span>
                           )}
                       </span>
                     </a>
